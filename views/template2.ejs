@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <%  const rootDomain = "https://english-nepali.com/"; %>
+
+        <% const rootDomain2 = "https://english-welsh.net/"; %>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="google-site-verification" content="j5LoTsmkSvUHmybLb3PnamQcGoAJHst8z0QVDLeDMBM" />
+        <title>English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary </title>
+        <link rel="icon" type="image/x-icon" href="/assact/image/hindi.png">
+        <meta name="keywords" content="meaning of <%= word %> in <%= language %>, <%= language %> meaning of <%= word %>, Pronunciation of <%= word %> in <%= language %>, English to <%= language.charAt(0).toUpperCase() + language.slice(1) %>, English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> translation of <%= word %>">
+        <meta name="description" content="The meaning of <%= word %> in <%= language %> is <%= trans %>.. What is <%= word.charAt(0).toUpperCase() + word.slice(1) %> in <%= language.charAt(0).toUpperCase() + language.slice(1) %>? See pronunciation, translation, synonyms, examples of <%= word.charAt(0).toUpperCase() + word.slice(1) %> in <%= language.charAt(0).toUpperCase() + language.slice(1) %>">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="canonical" href="<%= rootDomain2 + language %>/english-to-<%= language %>-meaning-<%= word %>" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="English :: <%= language.charAt(0).toUpperCase() + language.slice(1) %> Online Dictionary" />
+        <meta property="og:description" content="English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary (Free). You can get the meaning of any English word very easily. It has an auto-suggestion feature that will save you a lot of time getting any meaning." />
+        <meta property="og:url" content="<%= rootDomain2 + language %>" />
+        <meta property="og:site_name" content="English :: <%= language.charAt(0).toUpperCase() + language.slice(1) %> Online Dictionary" />
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Expires" content="0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" type="text/css" href="/style.css">
+        <link rel="stylesheet" type="text/css" href="/assact/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    </head>
+    <body>
+        <section id="full-popup" class="popup">
+           <div class="overlay">
+                <div class="my-container">
+                    <div class="row popup-top">
+                        <div class="col-6 ">
+                            <a href="/<%= language %>/index">
+                                <img class="main-logo" src="https://english-nepali.com/<%= language %>/logo/<%= language %>.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
+                                <img class="short-logo" src="/assact/image/short-logo.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
+                            </a>
+                        </div>
+                        <div class="col-6 d-flex justify-content-end align-items-center">
+                            <div class="popup-close">
+                                <!-- <div class="one"></div>
+                                <div class="tow"></div> -->
+                                <img src="/assact/image/close white.png">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu">
+                        <a href="/<%= language %>/index">home</a>
+                        <a href="/<%= language %>/english-to-<%= language %>-wordList">word list</a>
+                        <a href="<%= rootDomain + language %>/english-to-<%= language %>-wordHistory">word history</a>
+                        <form class="form-div" id="meaningForm2" method="get" onsubmit="return updateFormAction()">
+                            <div class="search-box d-flex justify-content-between"> 
+                                <input type="text" id="word2" name="word" required placeholder="Search for words">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                        </form> 
+                    </div>
+                    <div class="words popup-words" id="searchResultsContainer2" style="display: none;">
+                         <p class="word" id="similarWordsList2"></p>  
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- banner section -->
+        <section class="banner-section">
+            <div class="my-container">
+                <div class="main-manu">
+                    <div class="row align-items-center">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-6">
+                            <a href="<%= rootDomain + language %>">
+                                <img class="main-logo" src="https://english-nepali.com/<%= language %>/logo/<%= language %>.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
+                                <img class="short-logo" src="/assact/image/short-logo.png">
+                            </a>
+                        </div>
+                        <div class="col-xl-7 col-lg-7 col-md-7 col-1">
+                            <form class="form-div" id="meaningForm" method="get" onsubmit="return updateFormAction()">
+                                <div class="search-box d-flex justify-content-between"> 
+                                    <input type="text" id="word" name="word" required placeholder="Search for words">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </div>
+                            </form>  
+                        </div>
+                        <div class="col-xl-1 col-lg-1 col-md-1 col-5">
+                            <div id="open" class="menu-bar float-end">
+                                <div class="one"></div>
+                                <div class="tow"></div>
+                                <div class="three float-end"></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="words" id="searchResultsContainer">
+                     <p class="word" id="similarWordsList"></p>
+                </div> 
+                <div class="row">
+                    <div class="col-xl-7 col-lg-7 col-md-8">
+                        <div class="banner-content">
+                            <h1 class="hadding">Welcome to English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</h1>
+                            <p class="title">
+                                This is not just an ordinary English to Urdu dictionary. This dictionary has the largest database for word meaning. It does not only give you English to Urdu word meaning, it provides English to English word meaning along with Synonyms, Examples, Random words and Examples from your favourite TV Series. This dictionary has more than 500,000 word meaning and is still growing. Whether you are a word enthusiast or looking for precise meaning you have come to the right place.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-5 col-md-4 banner-image-responsive">
+                        <div class="banner-image">
+                            <img src="/assact/image/banner-image.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="add-section">
+            <% if (restricted && restricted.toLowerCase() === 'yes') { %>
+                <div class="container" style="display: none;">
+              <% } else { %>
+                <div class="container">
+              <% } %>
+                <!-- Content of the container -->
+                <div style="margin-top: 0px; border-radius: 5px;">
+                  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2642708445471409"
+                    crossorigin="anonymous"></script>
+                  <ins class="adsbygoogle" style="display: block" data-ad-format="fluid" data-ad-layout-key="-eo+62+7i-ib+9u"
+                    data-ad-client="ca-pub-2642708445471409" data-ad-slot="2525107510"></ins>
+                  <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                  </script>
+                </div>
+              </div>
+        </section>
+        <!-- random section -->
+        <section class="random-section">
+            <div class="my-container">
+                <div class="row">
+                    <div class="col-xl-5 col-lg-5 col-md-3 col-sm-3">
+                        <div class="random-image">
+                            <img src="/assact/image/randomimage.png">
+                        </div>
+                    </div>
+                    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-9 d-flex align-items-center">
+                        <div class="random-btns">
+                            <h3 class="hadding text-center">Random Words</h3>
+                            <div class="btn">
+                                <% result2.slice(-5).forEach(randomWord=> { %>
+                                <button><%= randomWord.word %></button>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 3third section -->
+        <section class="third-section">
+            <div class="my-container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center">
+                        <div>
+                            <div class="content-box d-flex align-items-center">
+                                <div>
+                                    <h3 class="hadding"> <a href="">Word of the Day</a> </h3>
+                                    <p class="sub-hadding" id="currentYear"></p>
+                                    <div class="sound">
+                                        <a class="d-flex sounds" id="speakButton" onclick="speakWord('<%= word %>')" aria-label="Speak Word: \'' . '<%= word %>' . '\'">
+                                            <p class="sub-hadding fw-bold"><%= word %></p>
+                                            <img src="/assact/image/sound.png">
+                                        </a>
+                                    </div>
+                                    <% if (sentences && sentences.length > 0) { %>
+                                    <h3 class="hadding">Sentence Examples:</h3>
+                                    <% const uniqueSentences = new Set(); %>
+                                    <div class="overflow-auto" id="sentences-of-word" style="height:150px;">
+                                    <% sentences.slice(-2).forEach((sentence, index) => { %>
+                                    <% const formattedSentence = sentence.replace(new RegExp(word, 'gi'), '<strong>$&</strong>'); %>
+                                    <% if (!uniqueSentences.has(formattedSentence)) { %>
+                                    <p class="content"><%- index+1 %>. <%- formattedSentence %></p>
+                                    <% uniqueSentences.add(formattedSentence); %>
+                                    <% } %>
+                                    <% }); %>
+                                    </div>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center">
+                        <div class="content-box d-flex align-items-center">
+                            <div>
+                                <h3 class="hadding"> <a href="#">Fill in The Blank</a> </h3>
+                                <p class="sub-hadding">Take the Quiz</p>
+                                <p class="content logo-content">In this quiz, you will be presented with sentences that have one or more missing words. Your task is to fill in the blanks with the most appropriate word or phrase. This quiz is designed to help you expand your vocabulary and improve your understanding of word usage.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center">
+                        <div class="content-box d-flex align-items-center">
+                            <div>
+                                <h3 class="hadding"> <a href="#">Topic Wise Words</a> </h3>
+                                <p class="sub-hadding">Search for Topic Wise Words</p>
+                                <p class="content logo-content">In Topic Wise Word it is designed to help you strengthen your vocabulary in a structured and organized way. This section provides a curated collection of words and their meanings based on specific topics and themes.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center">
+                        <div class="content-box d-flex align-items-center">
+                            <div>
+                                <h3 class="hadding">Your Word Search History:</h3>
+                                <div class="random-btns">
+                                    <div class="btn" id="demo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="footer">
+            <div class="my-container">
+                <div class="row">
+                    <div class="col-xl-7 col-md-12 justify-content-center d-flex align-items-center">
+                        <i class="fa-regular fa-copyright"></i>
+                        <p>2023 | <a href="#">English to Hindi Dictionary</a> | All Rights Reserved by a <a href="">Hindi Dictionary</a> </p>
+                    </div>
+                    <div class="col-xl-5 col-md-12 text-center text-end">
+                        <a href="">About Us</a> <span> | </span>
+                        <a href="">Privacy</a> <span> | </span>
+                        <a href="">Disclaimer</a> <span> | </span>
+                        <a href="">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <footer class="footer footer2">
+            <div class="my-container">
+                <div class="row">
+                    
+                    <div class="col-xl-5 col-md-12 text-center text-end f-menu">
+                        <a href="">About Us</a> <br>
+                        <a href="">Privacy</a> <br>
+                        <a href="">Disclaimer</a> <br>
+                        <a href="">Contact</a>
+                    </div>
+                    <div class="col-xl-7 col-md-12 justify-content-center d-flex align-items-center">
+                        <i class="fa-regular fa-copyright"></i>
+                        <p>2023 | <a href="#">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href="#"><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="/assact/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/assact/js/custom.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const darkModeToggle = document.getElementById("darkModeToggle");
+                const body = document.body;
+                const domain = window.location.hostname;
+                const darkModeEnabled = Cookies.get(`darkModeEnabled_${encodeURIComponent(domain)}`);
+                if (darkModeEnabled && darkModeEnabled === "true") {
+                    darkModeToggle.checked = true;
+                    body.classList.add("dark-mode");
+                }
+        
+                darkModeToggle.addEventListener("change", function () {
+                    if (darkModeToggle.checked) {
+                        body.classList.add("dark-mode");
+                        // Set dark mode preference in the cookie
+                        Cookies.set(`darkModeEnabled_${encodeURIComponent(domain)}`, "true", {
+                            expires: 7
+                        }); 
+                    } else {
+                        body.classList.remove("dark-mode");
+                        // Remove dark mode preference from the cookie
+                        Cookies.remove(`darkModeEnabled_${encodeURIComponent(domain)}`);
+                    }
+                });
+            });
+        </script>
+        <script>
+            const monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+            var currentdate = new Date(); 
+            var datetime = monthNames[currentdate.getMonth()] + " " + currentdate.getDate() + ", " + currentdate.getFullYear();
+            document.getElementById("currentYear").textContent = datetime;
+        </script>
+
+        <script>
+            const searchedWordsArray = JSON.parse(localStorage.getItem('searchedWords')) || [];
+            localStorage.setItem('searchedWords', JSON.stringify(searchedWordsArray));
+            let text = "";
+            const uniqueValuesSet = new Set();
+            searchedWordsArray.forEach(item => {
+                uniqueValuesSet.add(item);
+            });
+            const uniqueValuesArray = Array.from(uniqueValuesSet);
+            uniqueValuesArray.slice(-5).reverse().forEach(mysearchitem);
+            document.getElementById("demo").innerHTML = text;                            
+            function mysearchitem(item) {
+              text += "<button>" + item + "</button>"; 
+            }
+            console.log(searchedWordsArray);
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                const searchResultsContainer = $('#searchResultsContainer');
+                $('#word').on('input', function () {
+                    const inputValue = $(this).val();
+                    if (inputValue.length > 0) {
+                        searchResultsContainer.show();
+                    } else {
+                        searchResultsContainer.hide();
+                    }
+
+
+                    $.ajax({
+                        url: '/search/' + inputValue,
+                        method: 'GET',
+                        success: function (data) {
+                            // Update the search results on the page
+                            const similarWordsList = $('#similarWordsList');
+                            similarWordsList.empty();
+                            var language = window.location.pathname.split('/')[1];
+                            if (data.length > 0) {
+                                data.forEach(word => {
+                                    const listItem = $('<li>').html('<a href="/' +
+                                        language + '/english-to-' + language +
+                                        '-meaning-' + encodeURIComponent(word) +
+                                        '">' + word + '</a>');
+
+                                    similarWordsList.append(listItem);
+                                });
+                            } else {
+                                similarWordsList.append('<li>No words found</li>');
+                            }
+                        },
+                        error: function (error) {
+                            console.error(error);
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                const searchResultsContainer = $('#searchResultsContainer2');
+                $('#word2').on('input', function () {
+                    const inputValue = $(this).val();
+                    if (inputValue.length > 0) {
+                        searchResultsContainer.show();
+                    } else {
+                        searchResultsContainer.hide();
+                    }
+
+
+                    $.ajax({
+                        url: '/search/' + inputValue,
+                        method: 'GET',
+                        success: function (data) {
+                            // Update the search results on the page
+                            const similarWordsList = $('#similarWordsList2');
+                            similarWordsList.empty();
+                            var language = window.location.pathname.split('/')[1];
+                            if (data.length > 0) {
+                                data.forEach(word => {
+                                    const listItem = $('<li>').html('<a href="/' +
+                                        language + '/english-to-' + language +
+                                        '-meaning-' + encodeURIComponent(word) +
+                                        '">' + word + '</a>');
+
+                                    similarWordsList.append(listItem);
+                                });
+                            } else {
+                                similarWordsList.append('<li>No words found</li>');
+                            }
+                        },
+                        error: function (error) {
+                            console.error(error);
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script>
+            function updateFormAction() {
+                var language = window.location.pathname.split('/')[1]; // Extract language from the route
+                var userInput = document.getElementById('word').value.replace(/\s+/g, '-'); 
+                var encodedUserInput = encodeURIComponent(userInput); 
+                var destinationURL = '/' + language + '/english-to-' + language + '-meaning-' + encodedUserInput;
+
+                // Navigate to the desired URL
+                window.location.href = destinationURL;
+
+                // Prevent default form submission
+                return false;
+            }
+
+            // Handle keydown event on the search bar
+            document.getElementById('word').addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    if (document.getElementById('similarWordsList').innerHTML.includes('No words found')) {
+                        event.preventDefault();
+                    } else {
+                        updateFormAction();
+                    }
+                }
+            });
+
+
+
+            function speakWord() {
+                var wordToSpeak = "<%= word %>";
+                var speechSynthesisUtterance = new SpeechSynthesisUtterance(wordToSpeak);
+                var voices = window.speechSynthesis.getVoices();
+                speechSynthesisUtterance.voice = voices[0];
+                window.speechSynthesis.speak(speechSynthesisUtterance);
+                var speakButton = document.getElementById("speakButton");
+                speakButton.classList.add("speaking");
+                speechSynthesisUtterance.onend = function () {
+                    speakButton.classList.remove("speaking");
+                };
+            }
+        </script>
+    </body>
+</html>
