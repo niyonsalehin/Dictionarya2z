@@ -2,7 +2,6 @@
 <html>
     <head>
         <%  const rootDomain = "https://english-nepali.com/"; %>
-
         <% const rootDomain2 = "https://english-welsh.net/"; %>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +38,7 @@
                 <div class="my-container">
                     <div class="row popup-top">
                         <div class="col-6 ">
-                            <a href="#">
+                            <a href="/<%= language %>/index" rel="dofollow">
                                <img class="main-logo" src="https://english-nepali.com/<%= language %>/logo/<%= language %>.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                                 <img class="short-logo" src="/assact/image/short-logo.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                             </a>
@@ -53,9 +52,9 @@
                         </div>
                     </div>
                     <div class="menu">
-                        <a href="/<%= language %>/index">home</a>
-                        <a href="/<%= language %>/english-to-<%= language %>-wordList">word list</a>
-                        <a href="<%= rootDomain + language %>/english-to-<%= language %>-wordHistory">word history</a>
+                        <a href="/<%= language %>/index" rel="dofollow">home</a>
+                        <a href="/<%= language %>/english-to-<%= language %>-wordList" rel="dofollow">word list</a>
+                        <a href="/<%= language %>/english-to-<%= language %>-wordHistory" rel="dofollow">word history</a>
                         <form class="form-div" id="meaningForm2" method="get" onsubmit="return updateFormAction()">
                             <div class="search-box d-flex justify-content-between"> 
                                 <input type="text" id="word2" name="word" required placeholder="Search for words">
@@ -74,12 +73,12 @@
             <div class="main-manu">
                 <div class="row align-items-center">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-6">
-                        <a href="/<%= language %>/index">
+                        <a href="/<%= language %>/index" rel="dofollow">
                             <img class="main-logo" src="https://english-nepali.com/<%= language %>/logo/<%= language %>.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                             <img class="short-logo" src="/assact/image/short-logo.png">
                         </a>
                     </div>
-                    <div class="col-xl-7 col-lg-7 col-md-7 col-1">
+                    <div class="col-xl-7 col-lg-7 col-md-7 col-1 d-none d-sm-none d-md-block">
                         <form class="form-div" id="meaningForm" method="get" onsubmit="return updateFormAction()">
                             <div class="search-box d-flex justify-content-between"> 
                                 <input type="text" id="word" name="word" required placeholder="Search for words">
@@ -100,9 +99,9 @@
                  <p class="word" id="similarWordsList"></p>
             </div> 
             <div class="main-banner">
-                <h2 class="hadding"> English to <%= language %> meaning of <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= word %>"><%= word %></a> </h2>
+                <h2 class="hadding"> English to <%= language %> meaning of </h2>
                 <div class="d-flex sound-text-div">
-                    <a class="d-flex sounds" id="speakButton" onclick="speakWord('<%= word %>')" aria-label="Speak Word: \'' . '<%= word %>' . '\'">
+                    <a class="d-flex sounds" rel="dofollow" id="speakButton" onclick="speakWord('<%= word %>')" aria-label="Speak Word: \'' . '<%= word %>' . '\'">
                         <h3 class="sound-text"><%= word %></h3>
                         <img src="/assact/image/sound.png">              
                     </a>
@@ -144,32 +143,32 @@
                     <h3 class="hadding">Share This</h3>
                     <div class="all-mediya d-flex justify-content-center">
                             <span>
-                                <a href="">
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=https://english-nepali.com/<%= language %>/english-to-<%= language %>-meaning-<%= word %>&t=English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Meaning of <%= word.charAt(0).toUpperCase() + word.slice(1) %>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" >
                                     <i class=" d-flex justify-content-center align-items-center fa-brands fa-facebook-f"></i>
                                 </a>
                             </span>
                             <span>
-                                <a href="">
+                                <a href="https://api.whatsapp.com/send?text=https://english-nepali.com/<%= language %>/english-to-<%= language %>-meaning-<%= word %>" data-action="share/whatsapp/share" target="_blank">
                                     <i class=" d-flex justify-content-center align-items-center fa-brands fa-whatsapp"></i>
                                 </a>
                             </span>
                             <span>
-                                <a href="">
+                                <a href="https://www.linkedin.com/sharing/share-offsite/?url={https://english-nepali.com/<%= language %>/english-to-<%= language %>-meaning-<%= word %>}" target="_blank">
                                     <i class=" d-flex justify-content-center align-items-center fa-brands fa-linkedin-in"></i>
                                 </a>
                             </span>
                             <span>
-                                <a href="">
+                                <a href="mailto:?subject=English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Meaning of <%= word.charAt(0).toUpperCase() + word.slice(1) %>&amp;body=Check out this site https://english-nepali.com/<%= language %>/english-to-<%= language %>-meaning-<%= word %>." target="blank">
                                     <i class=" d-flex justify-content-center align-items-center fa-regular fa-envelope"></i>
                                 </a>
                             </span>
                             <span>
-                                <a href="">
+                                <a href="https://twitter.com/share?url=https://english-nepali.com/<%= language %>/english-to-<%= language %>-meaning-<%= word %>&via=TWITTER_HANDLE&text=English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Meaning of <%= word.charAt(0).toUpperCase() + word.slice(1) %>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank">
                                     <i class=" d-flex justify-content-center align-items-center fa-brands fa-x-twitter"></i>
                                 </a>
                             </span>
                             <span>
-                                <a href="">
+                                <a href="mailto:?subject=English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Meaning of <%= word.charAt(0).toUpperCase() + word.slice(1) %>&amp;body=Check out this site https://english-nepali.com/<%= language %>/english-to-<%= language %>-meaning-<%= word %>." target="blank">
                                     <i class=" d-flex justify-content-center align-items-center fa-solid fa-plus"></i>
                                 </a>
                             </span>
@@ -179,12 +178,28 @@
             </div>
         </div>
      </section>
+     <% if ((synonyms && synonyms.length > 0) && (sentences && sentences.length > 0)) { %>
      <section class="sentence-examples">
         <div class="my-container">
-            <% if (synonyms && synonyms.length > 0) { %>
+            <%
+                const uniqueSynonyms = new Set();
+                if (synonyms && synonyms.length > 0) {
+                    synonyms.forEach(synonym => {
+                        const synonymArray = synonym.split(',');
+                        synonymArray.forEach(uniqueSynonym => {
+                            const trimmedSynonym = uniqueSynonym.trim();
+                            if (!uniqueSynonyms.has(trimmedSynonym) && trimmedSynonym.toLowerCase() !== word.toLowerCase()) {
+                                uniqueSynonyms.add(trimmedSynonym);
+                            }
+                        });
+                    });
+                }
+            %>
+            <% if (uniqueSynonyms.size > 0) { %>
             <h3 class="hadding text-center">Synonyms</h3>
             <ol>
-                <% synonyms.forEach(synonym => { %>
+                
+                <% uniqueSynonyms.forEach(synonym => { %>
                 <li><%- synonym %> </li>
                 <% }); %>
             </ol>
@@ -204,30 +219,29 @@
             <% } %>
         </div>
      </section>
+     <% } %>
+     <% if (subtitleResult && subtitleResult.length > 0) { %>
      <section class="tv-series-examples">
         <div class="my-container">
             <h3 class="hadding text-center">TV Series Examples</h3>
             <div class="all-image-div">
-                    <% if (subtitleResult && subtitleResult.length > 0) { %>
-                    <div class="row">
-                        <% subtitleResult.slice(-6).forEach(subtitle => { %>
-                        <div class="col col-xl-4 col-lg-4 col-md-6">
-                            <div class="image-box text-center">
-                                <img class="tv-image" src="<%- subtitle.link %>">
-                                <a href="#"> <h3 class="hadding text-center"><%- subtitle.series_season_episode %></h3> </a>
-                                <% const formattedSub = subtitle.subs.replace(new RegExp(word, 'gi'), '<strong>$&</strong>'); %>
-                                <p class="title text-center"><%- formattedSub %></p>
-                            </div>
+                <div class="row">
+                    <% subtitleResult.slice(-6).forEach(subtitle => { %>
+                    <div class="col col-xl-4 col-lg-4 col-md-6">
+                        <div class="image-box text-center">
+                            <img class="tv-image" src="<%- subtitle.link %>">
+                            <a href="#"> <h3 class="hadding text-center"><%- subtitle.series_season_episode %></h3> </a>
+                            <% const formattedSub = subtitle.subs.replace(new RegExp(word, 'gi'), '<strong>$&</strong>'); %>
+                            <p class="title text-center"><%- formattedSub %></p>
                         </div>
-                        <% }); %>
                     </div>
-                    <% } %>
+                    <% }); %>
                 </div>
+            </div>
         </div>
      </section>
-
+     <% } %>
      
-
       <section class="random-section random-history">
             <div class="my-container">
                 <div class="row">
@@ -241,7 +255,7 @@
                             <h3 class="hadding text-center">Random Words</h3>
                             <div class="btn">
                                 <% randomWordSql.slice(-5).forEach(randomWord=> { %>
-                                <button><%= randomWord %></button>
+                                <button><a href="/<%= language %>/english-to-<%= language %>-meaning-<%= randomWord %>" class="text-dark" rel="dofollow"><%= randomWord %></a></button>
                                 <% }); %>
                             </div>
                         </div>
@@ -255,13 +269,13 @@
                 <div class="row">
                     <div class="col-xl-7 col-md-12 justify-content-center d-flex align-items-center">
                         <i class="fa-regular fa-copyright"></i>
-                        <p>2023 | <a href="#">English to Hindi Dictionary</a> | All Rights Reserved by a <a href="">Hindi Dictionary</a> </p>
+                        <p>2023 | <a href="/<%= language %>/index" rel="dofollow">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href="/<%= language %>/index" rel="dofollow"><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
                     </div>
                     <div class="col-xl-5 col-md-12 text-center text-end">
-                        <a href="">About Us</a> <span> | </span>
-                        <a href="">Privacy</a> <span> | </span>
-                        <a href="">Disclaimer</a> <span> | </span>
-                        <a href="">Contact</a>
+                        <a href="#">About Us</a> <span> | </span>
+                        <a href="#">Privacy</a> <span> | </span>
+                        <a href="#">Disclaimer</a> <span> | </span>
+                        <a href="#">Contact</a>
                     </div>
                 </div>
             </div>
@@ -272,14 +286,14 @@
                 <div class="row">
                     
                     <div class="col-xl-5 col-md-12 text-center text-end f-menu">
-                        <a href="">About Us</a> <br>
-                        <a href="">Privacy</a> <br>
-                        <a href="">Disclaimer</a> <br>
-                        <a href="">Contact</a>
+                        <a href="#">About Us</a> <br>
+                        <a href="#">Privacy</a> <br>
+                        <a href="#">Disclaimer</a> <br>
+                        <a href="#">Contact</a>
                     </div>
                     <div class="col-xl-7 col-md-12 justify-content-center d-flex align-items-center">
                         <i class="fa-regular fa-copyright"></i>
-                        <p>2023 | <a href="#">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href=""><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
+                        <p>2023 | <a href="/<%= language %>/index" rel="dofollow">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href="/<%= language %>/index" rel="dofollow"><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
                     </div>
                 </div>
             </div>
@@ -309,7 +323,7 @@
 
 
                     $.ajax({
-                        url: '/search/' + inputValue,
+                        url: '/<%= language %>/search/' + inputValue,
                         method: 'GET',
                         success: function (data) {
                             // Update the search results on the page
@@ -321,7 +335,7 @@
                                     const listItem = $('<li>').html('<a href="/' +
                                         language + '/english-to-' + language +
                                         '-meaning-' + encodeURIComponent(word) +
-                                        '">' + word + '</a>');
+                                        '" rel="dofollow">' + word + '</a>');
 
                                     similarWordsList.append(listItem);
                                 });
@@ -350,7 +364,7 @@
 
 
                     $.ajax({
-                        url: '/search/' + inputValue,
+                        url: '/<%= language %>/search/' + inputValue,
                         method: 'GET',
                         success: function (data) {
                             // Update the search results on the page
@@ -362,7 +376,7 @@
                                     const listItem = $('<li>').html('<a href="/' +
                                         language + '/english-to-' + language +
                                         '-meaning-' + encodeURIComponent(word) +
-                                        '">' + word + '</a>');
+                                        '" rel="dofollow">' + word + '</a>');
 
                                     similarWordsList.append(listItem);
                                 });

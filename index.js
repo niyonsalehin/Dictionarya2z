@@ -58,7 +58,55 @@ app.get("/test", async (req, res) => {
   res.json(result1.word);
 });
 
-app.get("/:language/english-to-:language-wordList", async (req, res) => {
+app.get('/:language/gets-words/:page', async (req, res) => {
+  const page = parseInt(req.params.page) || 1;
+  const pageSize = 100; // Set the number of items per page
+  const languagesWithSuffix = req.params.language;
+  const language = languagesWithSuffix.split("-")[0];
+  const UserModel = mongoose.model(language, UserSchema);
+
+  try {
+    const words = await UserModel.find({})
+      .skip((page - 1) * pageSize)
+      .limit(pageSize);
+
+    const totalWords = await UserModel.countDocuments({});
+    const totalPages = Math.ceil(totalWords / pageSize);
+
+    res.json({ words, totalPages });
+  } catch (error) {
+    console.error('Error retrieving words:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get('/:language/word-data/:word/:page', async (req, res) => {
+  const { word } = req.params;
+  const page = parseInt(req.params.page) || 1;
+  const pageSize = 100; // Set the number of items per page
+  const languagesWithSuffix = req.params.language;
+  const language = languagesWithSuffix.split("-")[0];
+  const UserModel = mongoose.model(language, UserSchema);
+
+  try {
+    const words = await UserModel.find(
+      { word: { $regex: new RegExp(`^${word}`, "i") } },
+      "word -_id"
+    ).skip((page - 1) * pageSize).limit(pageSize).exec();
+
+
+    const totalWords = await UserModel.countDocuments({ word: { $regex: new RegExp(`^${word}`, "i") } });
+    const totalPages = Math.ceil(totalWords / pageSize);
+    const cPage= page;
+
+    res.json({ words, totalPages , cPage });
+  } catch (error) {
+    console.error('Error retrieving words:', error);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+app.get("/:language/english-to-:language-wordList/", async (req, res) => {
   const perPage = 100;
   const page = req.query.page || 1;
   const languagesWithSuffix = req.params.language;
@@ -77,6 +125,10 @@ app.get("/:language/english-to-:language-wordList", async (req, res) => {
       language,
       users,
       currentPage: page,
+      hasNextPage: (perPage * page) < totalUsers,
+      hasPreviousPage: page > 1,
+      nextPage: parseInt(page) + 1,
+      previousPage: page - 1,
       totalPages: Math.ceil(totalUsers / perPage),
     });
   } catch (error) {
@@ -90,22 +142,23 @@ app.get("/:language/index", async (req, res) => {
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var currentdate = new Date(); 
   var datetime = monthNames[currentdate.getMonth()] + " " + currentdate.getDate() + " " + currentdate.getFullYear();
-  const regex = new RegExp(datetime, 'i'); 
+  console.log(datetime);
+  const regex = new RegExp(datetime, "i"); 
 
   try {
     const WotdModel = mongoose.model("word_of_the_day", WotdSchema);
-    const result1 =  await WotdModel.findOne({ date: "Sun Oct 29 2023 00:00:00 GMT+0600 (GMT+06:00)" });;
+    const result1 =  await WotdModel.findOne({ date: "Sun Oct 29 2023 00:00:00 GMT+0600 (GMT+06:00)" });
     const words = result1.word;
     const languagesWithSuffix = req.params.language;
-
-    // Extract the language without the "-language" suffix
     const languages = languagesWithSuffix.split("-")[0];
 
     const UserModel = mongoose.model(languages, UserSchema);
     const result = await UserModel.findOne({ word: words });
     const wordsort = { name: -1 };
-    const result2 =  await UserModel.find({}).limit(50);
-    console.log(result1.word);
+    const randomWords = await UserModel.aggregate([
+        { $sample: { size: 5 } },
+        { $project: { _id: 0, word: 1 } }
+      ]).exec();
 
     if (!result) {
       return res.status(404).json({ message: "Word not found" });
@@ -129,7 +182,6 @@ app.get("/:language/index", async (req, res) => {
 
   // Randomize sentences, subtitles, and randomWordSqlfullDB
   shuffleArray(sentences);
-  shuffleArray(result2);
 
     res.render("template2", {
       word,
@@ -137,7 +189,7 @@ app.get("/:language/index", async (req, res) => {
       language,
       sentences,
       restricted,
-      result2,
+      randomWords,
     });
   } catch (error) {
     console.error("Error retrieving user:", error);
@@ -145,8 +197,14 @@ app.get("/:language/index", async (req, res) => {
   }
 });
 
-app.get('/:language/english-to-:language-meaning-wordHistory', async (req, res) => {
-  res.render("searched-words");
+app.get('/:language/english-to-:language-wordHistory', async (req, res) => {
+
+  const languagesWithSuffix = req.params.language;
+  const language = languagesWithSuffix.split("-")[0];
+
+  res.render('template5', {
+      language,
+    });
 
 })
 
@@ -218,11 +276,13 @@ app.get("/:language/english-to-:language-meaning-:word", async (req, res) => {
   }
 });
 
-app.get("/search/:word", async (req, res) => {
+app.get("/:language/search/:word", async (req, res) => {
   const { word } = req.params;
+  const languagesWithSuffix = req.params.language;
+  const language = languagesWithSuffix.split("-")[0];
 
   try {
-    const UserModel = mongoose.model("urdu", UserSchema);
+    const UserModel = mongoose.model(language, UserSchema);
     const result = await UserModel.find(
       { word: { $regex: new RegExp(`^${word}`, "i") } },
       "word -_id"
@@ -239,13 +299,15 @@ app.get("/search/:word", async (req, res) => {
   }
 });
 
-app.get("/GET-WORDS/:word", async (req, res) => {
+app.get("/:language/GET-WORDS/:word", async (req, res) => {
   const { word } = req.params;
   const perPage = 100;
   const page = req.query.page || 1;
+  const languagesWithSuffix = req.params.language;
+  const language = languagesWithSuffix.split("-")[0];
 
   try {
-    const UserModel = mongoose.model("urdu", UserSchema);
+    const UserModel = mongoose.model(language, UserSchema);
     const result = await UserModel.find(
       { word: { $regex: new RegExp(`^${word}`, "i") } },
       "word -_id"
@@ -257,8 +319,7 @@ app.get("/GET-WORDS/:word", async (req, res) => {
     const letterWords = result.map((entry) => entry.word);
     const tPages= Math.ceil(totalUsers / perPage);
     
-    console.log(tPages);
-    res.json(letterWords, cPage, tPages);
+    res.json({letterWords, cPage, tPages});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal Server Error" });

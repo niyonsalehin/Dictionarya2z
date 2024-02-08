@@ -106,93 +106,13 @@
      </section>
      <section class="nothing-1">
          <div class="my-container">
-             <h1 class="text-center mt-3"><b>Word List</b></h1>
+             <h1 class="text-center mt-3"><b>Word Search History</b></h1>
              <br>
              <div class="justify-content-center d-flex align-items-center">
                 <div class="row overflow-auto" id="wordList">
-                    <% users.forEach(user=> { %>
-                    <div class="col-lg-2 col-md-2 col-sm-3 col-6">
-                        <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= user.word %>"  rel="dofollow"><P style="color:white;"><%= user.word %></P></a>
-                    </div>
-                    <% }); %>
+                    
                 </div>
              </div>
-         </div>
-     </section>
-     <section class="nothing-2">
-         <div class="my-container">
-            <div class="justify-content-center d-flex align-items-center" >
-                <nav aria-label="words">
-                  <ul class="pagination pagination-md flex-wrap">
-                    <li class="page-item"><button class="page-link word-button" data-param1="A" >A</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="B" >B</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="C" >C</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="D" >D</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="E" >E</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="F" >F</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="G" >G</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="H" >H</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="I" >I</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="J" >J</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="K" >K</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="L" >L</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="M" >M</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="N" >N</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="O" >O</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="P" >P</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="Q" >Q</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="R" >R</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="S" >S</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="T" >T</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="U" >U</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="V" >V</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="W" >W</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="X" >X</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="Y" >Y</button></li>
-                    <li class="page-item"><button class="page-link word-button" data-param1="Z" >Z</button></li>
-                  </ul>
-                </nav>
-                <br>
-                <br>
-            </div>
-            <div class="justify-content-center d-flex align-items-center" id="paginationControls">
-                <!-- Add this in your EJS template to handle pagination clicks -->
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination-sm justify-content-center">
-                        <% if (hasPreviousPage) { %>
-                            <li class="page-item">
-                                <button class="page-link" onclick="getWords(1)">First</button>
-                            </li>
-                            <li class="page-item">
-                                <button class="page-link" onclick="getWords(<%= previousPage-1 %>)"> <%= previousPage-1 %> </button>
-                            </li>
-                            <li class="page-item">
-                                <button class="page-link" onclick="getWords(<%= previousPage %>)"><%= previousPage %> </button>
-                            </li>
-                        <% } %>
-                        <li class="page-item active">
-                            <button class="page-link" onclick="getWords(<%= currentPage %>)"><%= currentPage %></button>
-                        </li>
-                        <% if (hasNextPage) { %>
-                            <li class="page-item">
-                                <button class="page-link" onclick="getWords(<%= nextPage %>)"><%= nextPage %></button>
-                            </li>
-                            <li class="page-item">
-                                <button class="page-link" onclick="getWords(<%= nextPage+1 %>)"><%= nextPage+1 %></button>
-                            </li>
-                            <li class="page-item">
-                                <button class="page-link" >....</button>
-                            </li>
-                            <li class="page-item">
-                                <button class="page-link"  onclick="getWords(<%= nextPage+5 %>)"><%= nextPage+5 %></button>
-                            </li>
-                            <li class="page-item">
-                                <button class="page-link" onclick="getWords(<%= totalPages %>)">Last</button>
-                            </li>
-                        <% } %>
-                    </ul>
-                </nav>
-            </div>
          </div>
      </section>
      <footer class="footer">
@@ -234,60 +154,19 @@
         <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
         <script>
-            $(document).ready(function () {
-                $('.word-button').click(function() {
-
-                  var word = $(this).data('param1');
-
-                    $.ajax({
-                        url: '/<%= language %>/GET-WORDS/' + word,
-                        method: 'GET',
-                        success: function (data) {
-                            const wordlist = $('#wordList');
-                            const paginationControls = $('#paginationControls');
-                            wordlist.empty();
-                            paginationControls.empty();
-                            if (data.letterWords.length > 0) {
-                                data.letterWords.forEach(word => {
-                                    const listItem = $('<div class="col-lg-2 col-md-2 col-sm-3 col-6">').html('<a href="/<%= language %>/english-to-<%= language %>-meaning-'+ word + '" rel="dofollow"><p style="color:white;">' + word + '</p></a>');
-
-                                    wordlist.append(listItem);
-                                });
-                            } else {
-                                wordlist.append('<h6 style="color:white;"><b>No words found</b></h6>');
-                            }
-                            updateWordPaginationControls(data.tPages, data.cPage , word);
-                        },
-                        error: function (error) {
-                            console.error(error);
-                        }
-                    });
-                });
-                function updateWordPaginationControls(totalPages, currentPage, word) {
-                    const paginationControls = $('#paginationControls');
-                    paginationControls.empty(); 
-
-                    const maxVisiblePages = 6;
-                    const halfMaxVisiblePages = Math.floor(maxVisiblePages / 2);
-
-                    let startPage = Math.max(1, currentPage - halfMaxVisiblePages);
-                    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-                    if (endPage - startPage < maxVisiblePages - 1) {
-                        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                    }
-
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link"  onclick="getWordWise(1,'${word}')">First</button></li></ul></nav>`);
-                    for (let i = startPage; i <= endPage; i++) {
-                        const link = $(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${i},'${word}')">${i}</button></li></ul></nav>`);
-                        if (i === currentPage) {
-                            link.addClass('active'); 
-                        }
-                        paginationControls.append(link);
-                    }
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${totalPages},'${word}')">Last</button></li></ul></nav>`);
-                }      
+            const searchedWordsArray = JSON.parse(localStorage.getItem('searchedWords')) || [];
+            localStorage.setItem('searchedWords', JSON.stringify(searchedWordsArray));
+            let text = "";
+            const uniqueValuesSet = new Set();
+            searchedWordsArray.forEach(item => {
+                uniqueValuesSet.add(item);
             });
+            const uniqueValuesArray = Array.from(uniqueValuesSet);
+            uniqueValuesArray.slice(-40).reverse().forEach(mysearchitem);
+            document.getElementById("wordList").innerHTML = text;                            
+            function mysearchitem(item) {
+              text += '<div class="col-lg-4 col-md-4 col-sm-4 col-6"><a href="/<%= language %>/english-to-<%= language %>-meaning-' + item + '" class="text-light text-center" rel="dofollow"><P>' + item + '</P></a></div>'; 
+            }
         </script>
 
         <script>
@@ -396,100 +275,6 @@
                     }
                 }
             });
-        </script>
-        <script>
-            function getWords(page) {
-                $.ajax({
-                    url: `/<%= language %>/gets-words/${page}`,
-                    method: 'GET',
-                    success: function(data) {
-                        updateWordList(data.words);
-                        updatePaginationControls(data.totalPages, page);
-                    },
-                    error: function(error) {
-                        console.error('Error fetching words:', error);
-                    }
-                });
-            }   
-
-            function updateWordList(words) {
-                const wordListContainer = $('#wordList'); // Assuming you have a container element with this ID
-
-                // Clear existing content
-                wordListContainer.empty();
-
-                // Append the updated word list
-                words.forEach(word => {
-                    const wordElement = $(`<div class="col-lg-2 col-md-2 col-sm-3 col-6"><a href="/<%= language %>/english-to-<%= language %>-meaning-${word.word}" rel="dofollow"><p style="color:white;">${word.word}</p></a></div>`);
-                    wordListContainer.append(wordElement);
-                });
-            }
-
-
-            function updatePaginationControls(totalPages, currentPage) {
-                const paginationControls = $('#paginationControls');
-                paginationControls.empty(); 
-
-                const maxVisiblePages = 6;
-                const halfMaxVisiblePages = Math.floor(maxVisiblePages / 2);
-
-                let startPage = Math.max(1, currentPage - halfMaxVisiblePages);
-                let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-                if (endPage - startPage < maxVisiblePages - 1) {
-                    startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                }
-
-                paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link"  onclick="getWords(1)">First</button></li></ul></nav>`);
-                for (let i = startPage; i <= endPage; i++) {
-                    const link = $(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWords(${i})">${i}</button></li></ul></nav>`);
-                    if (i === currentPage) {
-                        link.addClass('active'); 
-                    }
-                    paginationControls.append(link);
-                }
-                paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWords(${totalPages})">Last</button></li></ul></nav>`);
-            }
-
-            function getWordWise(page,word) {
-                $.ajax({
-                    url: `/<%= language %>/word-data/${word}/${page}`,
-                    method: 'GET',
-                    success: function(data) {
-                        updateWordList(data.words);
-                        updateWordsPaginationControls(data.totalPages, page, word);
-                    },
-                    error: function(error) {
-                        console.error('Error fetching words:', error);
-                    }
-                });
-            }
-
-            function updateWordsPaginationControls(totalPages, currentPage, word) {
-                    const paginationControls = $('#paginationControls');
-                    paginationControls.empty(); 
-
-                    const maxVisiblePages = 6;
-                    const halfMaxVisiblePages = Math.floor(maxVisiblePages / 2);
-
-                    let startPage = Math.max(1, currentPage - halfMaxVisiblePages);
-                    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-
-                    if (endPage - startPage < maxVisiblePages - 1) {
-                        startPage = Math.max(1, endPage - maxVisiblePages + 1);
-                    }
-
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link"  onclick="getWordWise(1,'${word}')">First</button></li></ul></nav>`);
-                    for (let i = startPage; i <= endPage; i++) {
-                        const link = $(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${i},'${word}')">${i}</button></li></ul></nav>`);
-                        if (i === currentPage) {
-                            link.addClass('active'); 
-                        }
-                        paginationControls.append(link);
-                    }
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${totalPages},'${word}')">Last</button></li></ul></nav>`);
-                }
-
         </script>
 </body>
 </html>
