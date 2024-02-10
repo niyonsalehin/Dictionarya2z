@@ -1105,6 +1105,12 @@ p{
         padding: 4px 20px;
     }
 }
+
+@media only screen and (min-width: 1150px){
+    .third-section .content-box{
+        min-width: 502px;
+    }
+}
 @media only screen and (max-width: 496px){
     .words {
         top: 65px;

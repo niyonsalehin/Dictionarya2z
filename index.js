@@ -147,7 +147,7 @@ app.get("/:language/index", async (req, res) => {
 
   try {
     const WotdModel = mongoose.model("word_of_the_day", WotdSchema);
-    const result1 =  await WotdModel.findOne({ date: "Sun Oct 29 2023 00:00:00 GMT+0600 (GMT+06:00)" });
+    const result1 =  await WotdModel.findOne({ date: {$regex : regex} });
     const words = result1.word;
     const languagesWithSuffix = req.params.language;
     const languages = languagesWithSuffix.split("-")[0];
