@@ -161,36 +161,49 @@ app.get("/:language/index", async (req, res) => {
       ]).exec();
 
     if (!result) {
-      return res.status(404).json({ message: "Word not found" });
+
+      const emptyArray = [];
+
+      res.render("template2", {
+          word:"Wellcome",
+          trans:"No Translation Found",
+          language: languages,
+          sentences: emptyArray,
+          restricted:"No",
+          randomWords,
+        });
+      //return res.status(404).json({ message: "Word not found" });
+    }else{
+
+      const {
+          word,
+          trans,
+          language,
+          sentences,
+          restricted,
+      } = result;
+
+      // Fisher-Yates shuffle algorithm to randomize the order
+      const shuffleArray = (array) => {
+          for (let i = array.length - 1; i > 0; i--) {
+              const j = Math.floor(Math.random() * (i + 1));
+              [array[i], array[j]] = [array[j], array[i]];
+          }
+      };
+
+      // Randomize sentences, subtitles, and randomWordSqlfullDB
+      shuffleArray(sentences);
+
+        res.render("template2", {
+          word,
+          trans,
+          language,
+          sentences,
+          restricted,
+          randomWords,
+        });
+
     }
-
-    const {
-      word,
-      trans,
-      language,
-      sentences,
-      restricted,
-  } = result;
-
-  // Fisher-Yates shuffle algorithm to randomize the order
-  const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-      }
-  };
-
-  // Randomize sentences, subtitles, and randomWordSqlfullDB
-  shuffleArray(sentences);
-
-    res.render("template2", {
-      word,
-      trans,
-      language,
-      sentences,
-      restricted,
-      randomWords,
-    });
   } catch (error) {
     console.error("Error retrieving user:", error);
     res.status(500).send("Internal Server Error");
@@ -224,52 +237,55 @@ app.get("/:language/english-to-:language-meaning-:word", async (req, res) => {
     console.log(result);
 
     if (!result) {
-      return res.status(404).json({ message: "Word not found" });
+      res.redirect('/'+ languages +'/index');
+    }else{
+
+        const {
+        word,
+        gptans,
+        trans,
+        language,
+        synonyms,
+        sentences,
+        subtitles,
+        randomWordSql,
+        restricted,
+    } = result;
+
+    // Map subtitles and create links
+    const subtitlesWithLinks = subtitles.map((subtitle) => {
+        const { series_season_episode, start_time } = subtitle;
+        subtitle.link = `https://test.english-dictionary.help/screenshots/${series_season_episode}_${start_time}.webp`;
+        return subtitle;
+    });
+
+    // Fisher-Yates shuffle algorithm to randomize the order
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    };
+
+    // Randomize sentences, subtitles, and randomWordSql
+    shuffleArray(sentences);
+    shuffleArray(subtitlesWithLinks);
+    shuffleArray(randomWordSql);
+
+      res.render("template3", {
+        word,
+        gptans,
+        trans,
+        language,
+        synonyms,
+        sentences,
+        subtitleResult: subtitlesWithLinks,
+        randomWordSql,
+        restricted,
+      });
+
     }
 
-    const {
-      word,
-      gptans,
-      trans,
-      language,
-      synonyms,
-      sentences,
-      subtitles,
-      randomWordSql,
-      restricted,
-  } = result;
-
-  // Map subtitles and create links
-  const subtitlesWithLinks = subtitles.map((subtitle) => {
-      const { series_season_episode, start_time } = subtitle;
-      subtitle.link = `https://test.english-dictionary.help/screenshots/${series_season_episode}_${start_time}.webp`;
-      return subtitle;
-  });
-
-  // Fisher-Yates shuffle algorithm to randomize the order
-  const shuffleArray = (array) => {
-      for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-      }
-  };
-
-  // Randomize sentences, subtitles, and randomWordSql
-  shuffleArray(sentences);
-  shuffleArray(subtitlesWithLinks);
-  shuffleArray(randomWordSql);
-
-    res.render("template3", {
-      word,
-      gptans,
-      trans,
-      language,
-      synonyms,
-      sentences,
-      subtitleResult: subtitlesWithLinks,
-      randomWordSql,
-      restricted,
-    });
   } catch (error) {
     console.error("Error retrieving user:", error);
     res.status(500).send("Internal Server Error");

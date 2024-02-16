@@ -5,6 +5,9 @@ body{
 	color: #000; 
 	word-wrap:break-word; 
 }
+body::-webkit-scrollbar {
+    display: none;
+}
 *{
 	box-sizing: border-box;
 	margin: 0; 
@@ -242,7 +245,7 @@ p{
 .random-btns .btn{
     text-align: left;
 }
-.random-btns .btn button{
+.random-btns .btn a button{
     border-radius: 10px;
     border: 2px solid #000;
     background: #4FC0A7;
@@ -254,7 +257,7 @@ p{
     font-weight: 400;
     transition: .3s;
 }
-.random-btns .btn button:hover{
+.random-btns .btn a button:hover{
     box-shadow: 7px 9px #000;
 }
 /* third-section */
@@ -317,7 +320,7 @@ p{
 .third-section .content-box .random-btns{
     margin-top: 50px;
 }
-.third-section .content-box .random-btns .btn button{
+.third-section .content-box .random-btns .btn a button{
     background-color: #fff;
     margin-right: 20px;
 }
@@ -680,7 +683,7 @@ p{
         font-size: 15px;
         line-height: 25px;
       }
-      .random-btns .btn button {
+      .random-btns .btn a button {
         padding: 14px 20px;
         margin-right: 35px;
         font-size: 18px;
@@ -716,12 +719,12 @@ p{
         font-size: 20px;
         line-height: 26px;
     }
-    .third-section .random-btns .btn button {
+    .third-section .random-btns .btn a button {
         padding: 10px 10px;
         margin-right: 35px;
         font-size: 18px;
     }
-    .third-section .content-box .random-btns .btn button {
+    .third-section .content-box .random-btns .btn a button {
         background-color: #fff;
         margin-right: 15px;
     }
@@ -966,14 +969,14 @@ p{
         margin-left: 0;
         text-align: center;
     }
-    .random-btns .btn button {
+    .random-btns .btn a button {
         padding: 10px 10px;
         margin-right: 10px;
         font-size: 14px;
         line-height: 20px;
         margin-bottom: 15px;
     }
-    .random-btns .btn button:hover {
+    .random-btns .btn a button:hover {
         box-shadow: 5px 5px #000;
     }
     .third-section .content-box .hadding {
@@ -996,7 +999,7 @@ p{
     .random-btns .btn {
         text-align: center;
     }
-    .third-section .random-btns .btn button {
+    .third-section .random-btns .btn a button {
         font-size: 14px;
         line-height: 20px;
     }
@@ -1164,6 +1167,7 @@ p{
     .word-history-words {
         top: 65px;
     }
+
 }
 @media only screen and (max-width: 440px){
     .words {
@@ -1423,4 +1427,8 @@ p{
 #wordList::-webkit-scrollbar-thumb
 {
     background-color: #453779;
+}
+
+.word-search-section{
+    min-height: 1000px;
 }

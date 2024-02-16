@@ -151,7 +151,7 @@
                             <h3 class="hadding text-center">Random Words</h3>
                             <div class="btn">
                                 <% randomWords.slice(-5).forEach(randomWord=> { %>
-                                <button><a href="/<%= language %>/english-to-<%= language %>-meaning-<%= randomWord.word %>" class="text-light" rel="dofollow"><%= randomWord.word %> </a></button>
+                                <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= randomWord.word %>" class="text-light" rel="dofollow"><button><%= randomWord.word %></button></a>
                                 <% }); %>
                             </div>
                         </div>
@@ -167,11 +167,11 @@
                         <div>
                             <div class="content-box d-flex align-items-center">
                                 <div>
-                                    <h3 class="hadding"> <a href="#">Word of the Day</a> </h3>
+                                    <h3 class="hadding"> <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= word %>" rel="dofollow">Word of the Day</a> </h3>
                                     <p class="sub-hadding" id="currentYear"></p>
-                                    <div class="sound">
-                                        <a class="d-flex sounds" rel="dofollow" id="speakButton" onclick="speakWord('<%= word %>')" aria-label="Speak Word: \'' . '<%= word %>' . '\'">
-                                            <p class="sub-hadding fw-bold"><%= word %></p>
+                                    <div class="sound d-flex align-items-center">
+                                        <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= word %>" class="d-flex sounds" rel="dofollow"><p class="sub-hadding fw-bold"><%= word %></p></a> 
+                                        <a class="d-flex sounds" id="speakButton" onclick="speakWord('<%= word %>')" aria-label="Speak Word: \'' . '<%= word %>' . '\'">
                                             <img src="/assact/image/sound.png">
                                         </a>
                                     </div>
@@ -190,7 +190,7 @@
                                     <% } %>
                                 </div>
                             </div>
-                        </div>  
+                        </div> 
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-6 d-flex justify-content-center">
                         <div class="content-box d-flex align-items-center">
@@ -287,7 +287,7 @@
             uniqueValuesArray.slice(-5).reverse().forEach(mysearchitem);
             document.getElementById("demo").innerHTML = text;                            
             function mysearchitem(item) {
-              text += '<button><a href="/<%= language %>/english-to-<%= language %>-meaning-' + item + '" class="text-dark" rel="dofollow">' + item + '</a></button>'; 
+              text += '<a href="/<%= language %>/english-to-<%= language %>-meaning-' + item + '" class="text-dark" rel="dofollow"><button>' + item + '</button></a>'; 
             }
         </script>
 

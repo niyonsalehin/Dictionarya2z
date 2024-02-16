@@ -104,8 +104,8 @@
             <div class="main-banner">
                 <h2 class="hadding"> English to <%= language %> meaning of </h2>
                 <div class="d-flex sound-text-div">
+                    <a rel="dofollow" href="/<%= language %>/english-to-<%= language %>-meaning-<%= word %>" class="d-flex sounds"><h3 class="sound-text"><%= word %></h3></a> 
                     <a class="d-flex sounds" rel="dofollow" id="speakButton" onclick="speakWord('<%= word %>')" aria-label="Speak Word: \'' . '<%= word %>' . '\'">
-                        <h3 class="sound-text"><%= word %></h3>
                         <img src="/assact/image/sound.png">              
                     </a>
                 </div>
@@ -115,9 +115,7 @@
         <img class="banner-image" src="/assact/image/banner-main-image.png">
      </section>
      <section class="text-box-section ">
-     
-                <p class="text-center"> <%= gptans.replace(/(<([^>]+)>)/ig, '') %>. <br><%= trans.replace(/(<([^>]+)>)/ig, '') %></p>
-            
+        <p class="text-center"> <%= trans.replace(/(<([^>]+)>)/ig, '') %> </p>
      </section>
 
      <section class="add-section">
@@ -258,7 +256,7 @@
                             <h3 class="hadding text-center">Random Words</h3>
                             <div class="btn">
                                 <% randomWordSql.slice(-5).forEach(randomWord=> { %>
-                                <button><a href="/<%= language %>/english-to-<%= language %>-meaning-<%= randomWord %>" class="text-dark" rel="dofollow"><%= randomWord %></a></button>
+                                <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= randomWord %>" class="text-dark" rel="dofollow"><button><%= randomWord %></button></a>
                                 <% }); %>
                             </div>
                         </div>

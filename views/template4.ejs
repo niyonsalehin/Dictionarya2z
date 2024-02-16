@@ -158,10 +158,10 @@
                 <br>
                 <br>
             </div>
-            <div class="justify-content-center d-flex align-items-center" id="paginationControls">
+            <div class="justify-content-center d-flex align-items-center" >
                 <!-- Add this in your EJS template to handle pagination clicks -->
                 <nav aria-label="Page navigation example">
-                    <ul class="pagination pagination-sm justify-content-center">
+                    <ul class="pagination pagination-sm flex-wrap" id="paginationControls">
                         <% if (hasPreviousPage) { %>
                             <li class="page-item">
                                 <button class="page-link" onclick="getWords(1)">First</button>
@@ -283,15 +283,15 @@
                         startPage = Math.max(1, endPage - maxVisiblePages + 1);
                     }
 
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link"  onclick="getWordWise(1,'${word}')">First</button></li></ul></nav>`);
+                    paginationControls.append(`<li class="page-item"><button class="page-link"  onclick="getWordWise(1,'${word}')">First</button></li>`);
                     for (let i = startPage; i <= endPage; i++) {
-                        const link = $(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${i},'${word}')">${i}</button></li></ul></nav>`);
+                        const link = $(`<li class="page-item"><button class="page-link" onclick="getWordWise(${i},'${word}')">${i}</button></li>`);
                         if (i === currentPage) {
                             link.addClass('active'); 
                         }
                         paginationControls.append(link);
                     }
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${totalPages},'${word}')">Last</button></li></ul></nav>`);
+                    paginationControls.append(`<li class="page-item"><button class="page-link" onclick="getWordWise(${totalPages},'${word}')">Last</button></li>`);
                 }      
             });
         </script>
@@ -446,15 +446,15 @@
                     startPage = Math.max(1, endPage - maxVisiblePages + 1);
                 }
 
-                paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link"  onclick="getWords(1)">First</button></li></ul></nav>`);
+                paginationControls.append(`<li class="page-item"><button class="page-link"  onclick="getWords(1)">First</button></li>`);
                 for (let i = startPage; i <= endPage; i++) {
-                    const link = $(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWords(${i})">${i}</button></li></ul></nav>`);
+                    const link = $(`<li class="page-item"><button class="page-link" onclick="getWords(${i})">${i}</button></li>`);
                     if (i === currentPage) {
                         link.addClass('active'); 
                     }
                     paginationControls.append(link);
                 }
-                paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWords(${totalPages})">Last</button></li></ul></nav>`);
+                paginationControls.append(`<li class="page-item"><button class="page-link" onclick="getWords(${totalPages})">Last</button></li>`);
             }
 
             function getWordWise(page,word) {
@@ -485,15 +485,15 @@
                         startPage = Math.max(1, endPage - maxVisiblePages + 1);
                     }
 
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link"  onclick="getWordWise(1,'${word}')">First</button></li></ul></nav>`);
+                    paginationControls.append(`<li class="page-item"><button class="page-link"  onclick="getWordWise(1,'${word}')">First</button></li>`);
                     for (let i = startPage; i <= endPage; i++) {
-                        const link = $(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${i},'${word}')">${i}</button></li></ul></nav>`);
+                        const link = $(`<li class="page-item"><button class="page-link" onclick="getWordWise(${i},'${word}')">${i}</button></li>`);
                         if (i === currentPage) {
                             link.addClass('active'); 
                         }
                         paginationControls.append(link);
                     }
-                    paginationControls.append(`<nav aria-label="Page navigation example"><ul class="pagination pagination-sm justify-content-center"><li class="page-item"><button class="page-link" onclick="getWordWise(${totalPages},'${word}')">Last</button></li></ul></nav>`);
+                    paginationControls.append(`<li class="page-item"><button class="page-link" onclick="getWordWise(${totalPages},'${word}')">Last</button></li>`);
                 }
 
         </script>
