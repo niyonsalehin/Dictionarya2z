@@ -165,7 +165,7 @@ app.get("/:language/index", async (req, res) => {
       const emptyArray = [];
 
       res.render("template2", {
-          word:"Wellcome",
+          word:"Welcome",
           trans:"No Translation Found",
           language: languages,
           sentences: emptyArray,
