@@ -32,13 +32,13 @@ $(document).ready(function(){
 
 // jason data
 var data = [];
-$.getJSON('/assact/js/jsondata.json',function(result){
+$.getJSON('/assact/js/jsonData.json',function(result){
   $.each(result.entries, function(index, val){
     data.push(val);
   });
+  $( "#auto_check" ).autocomplete({
+        source: data
+      });
 });
 // console.log(data)
 
-      $( "#auto_check" ).autocomplete({
-        source: data
-      });

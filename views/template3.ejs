@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <%  const rootDomain = "https://english-nepali.com/"; %>
         <% const rootDomain2 = "https://english-welsh.net/"; %>
@@ -22,17 +22,12 @@
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
-        <!--
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap" rel="stylesheet"> -->
         <link href="/assact/OpenSans-VariableFont_wdth,wght.ttf" rel="stylesheet">
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
         <link rel="stylesheet" href="/assact/6.5.1/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="/style.css">
         <link rel="stylesheet" type="text/css" href="/assact/css/bootstrap.min.css">
-        <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>-->
         <script src="/assact/js/jquery--3.7.1.min.js"></script>
+        <script async custom-element="amp-ad" src="https://cdn.ampproject.org/v0/amp-ad-0.1.js"></script>
 
     </head>
     <body>
@@ -50,7 +45,7 @@
                             <div class="popup-close">
                                 <!-- <div class="one"></div>
                                 <div class="tow"></div> -->
-                                <img src="/assact/image/close white.png">
+                                <img src="/assact/image/close white.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                             </div>
                         </div>
                     </div>
@@ -58,7 +53,7 @@
                         <a href="/<%= language %>/index" rel="dofollow">home</a>
                         <a href="/<%= language %>/english-to-<%= language %>-wordList" rel="dofollow">word list</a>
                         <a href="/<%= language %>/english-to-<%= language %>-wordHistory" rel="dofollow">word history</a>
-                        <form class="form-div" id="meaningForm2" method="get" onsubmit="return updateFormAction()">
+                        <form class="form-div" id="meaningForm2" method="get" onsubmit="return updateFormAction2()">
                             <div class="search-box d-flex justify-content-between"> 
                                 <input type="text" id="word2" name="word" required placeholder="Search for words">
                                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -78,7 +73,7 @@
                     <div class="col-xl-4 col-lg-4 col-md-4 col-6">
                         <a href="/<%= language %>/index" rel="dofollow">
                             <img class="main-logo" src="https://english-nepali.com/<%= language %>/logo/<%= language %>.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
-                            <img class="short-logo" src="/assact/image/short-logo.png">
+                            <img class="short-logo" src="/assact/image/short-logo.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                         </a>
                     </div>
                     <div class="col-xl-7 col-lg-7 col-md-7 col-1 d-none d-sm-none d-md-block">
@@ -110,9 +105,9 @@
                     </a>
                 </div>
             </div>
-            <img class="banner-ellipse" src="/assact/image/Ellipse-number-1.png">
+            <img class="banner-ellipse" src="/assact/image/Ellipse-number-1.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> banner">
         </div>
-        <img class="banner-image" src="/assact/image/banner-main-image.png">
+        <img class="banner-image" src="/assact/image/banner-main-image.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> banner 2">
      </section>
      <section class="text-box-section ">
         <p class="text-center"> <%= trans.replace(/(<([^>]+)>)/ig, '') %> </p>
@@ -126,13 +121,25 @@
           <% } %>
             <!-- Content of the container -->
             <div style="margin-top: 0px; border-radius: 5px;">
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2642708445471409"
-                crossorigin="anonymous"></script>
-              <ins class="adsbygoogle" style="display: block" data-ad-format="fluid" data-ad-layout-key="-eo+62+7i-ib+9u"
-                data-ad-client="ca-pub-2642708445471409" data-ad-slot="2525107510"></ins>
-              <script>
-                (adsbygoogle = window.adsbygoogle || []).push({});
-              </script>
+                 <script async
+                 src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2642708445471409"
+                 crossorigin="anonymous"></script>
+                 <!-- BDWordEJSResponsiveV2-->
+                 <ins class="adsbygoogle"
+                 style="display:inline-block;width:1050px;height:300px"
+                 data-ad-client="ca-pub-2642708445471409"
+                 data-ad-slot="2429976733"></ins>
+                 <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+                 </script>
+                 <amp-ad
+                 layout="fixed"
+                 width="1050"
+                 height="300"
+                 type="adsense"
+                 data-ad-client="ca-pub-2642708445471409"
+                 data-ad-slot="2429976733">
+                 </amp-ad>
             </div>
           </div>
     </section>
@@ -173,7 +180,6 @@
                                     <i class=" d-flex justify-content-center align-items-center fa-solid fa-plus"></i>
                                 </a>
                             </span>
-
                     </div>
                 </div>
             </div>
@@ -227,20 +233,29 @@
             <h3 class="hadding text-center">TV Series Examples</h3>
             <div class="all-image-div">
                 <div class="row">
-                    <% subtitleResult.slice(-6).forEach(subtitle => { %>
+                    <% 
+                    const uniqueFormattedSubs = [];
+                    subtitleResult.slice(-6).forEach(subtitle => {
+                        const formattedSub = subtitle.subs.replace(new RegExp(word, 'gi'), '<strong>$&</strong>');
+                        if (!uniqueFormattedSubs.includes(formattedSub)) {
+                            uniqueFormattedSubs.push(formattedSub);
+                            const correspondingSubtitle = subtitleResult.find(sub => sub.subs === subtitle.subs);
+                    %>
                     <div class="col col-xl-4 col-lg-4 col-md-6">
                         <div class="image-box text-center">
-                            <img class="tv-image" src="<%- subtitle.link %>">
-                            <a href="#"> <h3 class="hadding text-center"><%- subtitle.series_season_episode %></h3> </a>
-                            <% const formattedSub = subtitle.subs.replace(new RegExp(word, 'gi'), '<strong>$&</strong>'); %>
+                            <img class="tv-image" src="<%- correspondingSubtitle.link %>" alt="thumbnail ">
+                            <a href="#"> <h3 class="hadding text-center"><%- correspondingSubtitle.series_season_episode %></h3> </a>
                             <p class="title text-center"><%- formattedSub %></p>
                         </div>
                     </div>
-                    <% }); %>
+                    <% 
+                        }
+                    }); 
+                    %>
                 </div>
             </div>
         </div>
-     </section>
+    </section>
      <% } %>
      
       <section class="random-section random-history">
@@ -248,7 +263,7 @@
                 <div class="row">
                     <div class="col-xl-5 col-lg-5 col-md-3 col-sm-3">
                         <div class="random-image">
-                            <img src="/assact/image/randomimage.png">
+                            <img src="/assact/image/randomimage.png" alt="random">
                         </div>
                     </div>
                     <div class="col-xl-7 col-lg-7 col-md-9 col-sm-9 d-flex align-items-center">
@@ -302,9 +317,6 @@
 
         <script src="/assact/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/assact/js/custom.js"></script>
-        <!--<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>-->
-        <script src="/assact/js/jquery-3.6.4.min.js"></script>
-        <!--<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>-->
         <script src="/assact/js/js.cookie.min.js"></script>
 
         <script>
@@ -413,6 +425,31 @@
             document.getElementById('word').addEventListener('keydown', function (event) {
                 if (event.key === 'Enter') {
                     if (document.getElementById('similarWordsList').innerHTML.includes('No words found')) {
+                        event.preventDefault();
+                    } else {
+                        updateFormAction();
+                    }
+                }
+            });
+
+
+            function updateFormAction2() {
+                var language = window.location.pathname.split('/')[1]; // Extract language from the route
+                var userInput = document.getElementById('word2').value.replace(/\s+/g, '-'); 
+                var encodedUserInput = encodeURIComponent(userInput); 
+                var destinationURL = '/' + language + '/english-to-' + language + '-meaning-' + encodedUserInput;
+
+                // Navigate to the desired URL
+                window.location.href = destinationURL;
+
+                // Prevent default form submission
+                return false;
+            }
+
+            // Handle keydown event on the search bar
+            document.getElementById('word2').addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    if (document.getElementById('similarWordsList2').innerHTML.includes('No words found')) {
                         event.preventDefault();
                     } else {
                         updateFormAction();

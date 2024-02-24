@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const ejs = require("ejs");
 const fs = require("fs");
+const compression = require('compression');
+app.use(compression());
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
@@ -165,7 +167,7 @@ app.get("/:language/index", async (req, res) => {
       const emptyArray = [];
 
       res.render("template2", {
-          word:"Wellcome",
+          word:"Welcome",
           trans:"No Translation Found",
           language: languages,
           sentences: emptyArray,
