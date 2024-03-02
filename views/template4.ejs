@@ -22,11 +22,13 @@
         <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
         <meta http-equiv="Pragma" content="no-cache">
         <meta http-equiv="Expires" content="0">
-        <link href="/assact/OpenSans-VariableFont_wdth,wght.ttf" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="/assact/6.5.1/css/all.min.css" />
         <link rel="stylesheet" type="text/css" href="/style.css">
         <link rel="stylesheet" type="text/css" href="/assact/css/bootstrap.min.css">
-        <script src="/assact/js/jquery--3.7.1.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <style>
             .page-item{
                 margin:4px;
@@ -39,7 +41,7 @@
                 <div class="my-container">
                     <div class="row popup-top">
                         <div class="col-6 ">
-                            <a href="/<%= language %>/index"  rel="dofollow">
+                            <a href="/<%= language %>/"  rel="dofollow">
                                <img class="main-logo" src="https://english-nepali.com/<%= language %>/logo/<%= language %>.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                                 <img class="short-logo" src="/assact/image/short-logo.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                             </a>
@@ -53,7 +55,7 @@
                         </div>
                     </div>
                     <div class="menu">
-                        <a href="/<%= language %>/index"  rel="dofollow">home</a>
+                        <a href="/<%= language %>/"  rel="dofollow">home</a>
                         <a href="/<%= language %>/english-to-<%= language %>-wordList"  rel="dofollow">word list</a>
                         <a href="/<%= language %>/english-to-<%= language %>-wordHistory"  rel="dofollow">word history</a>
                         <form class="form-div" id="meaningForm2" method="get" onsubmit="return updateFormAction2()">
@@ -74,7 +76,7 @@
             <div class="main-manu">
                 <div class="row align-items-center">
                     <div class="col-xl-4 col-lg-4 col-md-4 col-6">
-                        <a href="/<%= language %>/index"  rel="dofollow">
+                        <a href="/<%= language %>/"  rel="dofollow">
                             <img class="main-logo" src="https://english-nepali.com/<%= language %>/logo/<%= language %>.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                             <img class="short-logo" src="/assact/image/short-logo.png" alt="<%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary Logo">
                         </a>
@@ -109,7 +111,7 @@
                 <div class="row overflow-auto" id="wordList">
                     <% users.forEach(user=> { %>
                     <div class="col-lg-2 col-md-2 col-sm-3 col-6">
-                        <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= user.word %>"  rel="dofollow"><P style="color:white;"><%= user.word %></P></a>
+                        <a href="/<%= language %>/english-to-<%= language %>-meaning-<%= user.word.replace(/ /g, '-') %>"  rel="dofollow"><P style="color:white;"><%= user.word %></P></a>
                     </div>
                     <% }); %>
                 </div>
@@ -196,7 +198,7 @@
                 <div class="row">
                     <div class="col-xl-7 col-md-12 justify-content-center d-flex align-items-center">
                         <i class="fa-regular fa-copyright"></i>
-                        <p>2023 | <a href="/<%= language %>/index"  rel="dofollow">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href="/<%= language %>/index"  rel="dofollow"><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
+                        <p>2023 | <a href="/<%= language %>/"  rel="dofollow">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href="/<%= language %>/"  rel="dofollow"><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
                     </div>
                     <div class="col-xl-5 col-md-12 text-center text-end">
                         <a href="#">About Us</a> <span> | </span>
@@ -220,7 +222,7 @@
                     </div>
                     <div class="col-xl-7 col-md-12 justify-content-center d-flex align-items-center">
                         <i class="fa-regular fa-copyright"></i>
-                        <p>2023 | <a href="/<%= language %>/index"  rel="dofollow">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href="/<%= language %>/index"  rel="dofollow"><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
+                        <p>2023 | <a href="/<%= language %>/"  rel="dofollow">English to <%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> | All Rights Reserved by a <a href="/<%= language %>/"  rel="dofollow"><%= language.charAt(0).toUpperCase() + language.slice(1) %> Dictionary</a> </p>
                     </div>
                 </div>
             </div>
@@ -245,7 +247,7 @@
                             paginationControls.empty();
                             if (data.letterWords.length > 0) {
                                 data.letterWords.forEach(word => {
-                                    const listItem = $('<div class="col-lg-2 col-md-2 col-sm-3 col-6">').html('<a href="/<%= language %>/english-to-<%= language %>-meaning-'+ word + '" rel="dofollow"><p style="color:white;">' + word + '</p></a>');
+                                    const listItem = $('<div class="col-lg-2 col-md-2 col-sm-3 col-6">').html('<a href="/<%= language %>/english-to-<%= language %>-meaning-'+ word.replace(/ /g, '-') + '" rel="dofollow"><p style="color:white;">' + word + '</p></a>');
 
                                     wordlist.append(listItem);
                                 });
@@ -310,7 +312,7 @@
                                 data.forEach(word => {
                                     const listItem = $('<li>').html('<a href="/' +
                                         language + '/english-to-' + language +
-                                        '-meaning-' + encodeURIComponent(word) +
+                                        '-meaning-' + encodeURIComponent(word.replace(/ /g, '-')) +
                                         '" rel="dofollow">' + word + '</a>');
 
                                     similarWordsList.append(listItem);
@@ -351,7 +353,7 @@
                                 data.forEach(word => {
                                     const listItem = $('<li>').html('<a href="/' +
                                         language + '/english-to-' + language +
-                                        '-meaning-' + encodeURIComponent(word) +
+                                        '-meaning-' + encodeURIComponent(word.replace(/ /g, '-')) +
                                         '" rel="dofollow">' + word + '</a>');
 
                                     similarWordsList.append(listItem);
@@ -416,7 +418,7 @@
 
                 // Append the updated word list
                 words.forEach(word => {
-                    const wordElement = $(`<div class="col-lg-2 col-md-2 col-sm-3 col-6"><a href="/<%= language %>/english-to-<%= language %>-meaning-${word.word}" rel="dofollow"><p style="color:white;">${word.word}</p></a></div>`);
+                    const wordElement = $(`<div class="col-lg-2 col-md-2 col-sm-3 col-6"><a href="/<%= language %>/english-to-<%= language %>-meaning-${word.word.replace(/ /g, '-')}" rel="dofollow"><p style="color:white;">${word.word}</p></a></div>`);
                     wordListContainer.append(wordElement);
                 });
             }

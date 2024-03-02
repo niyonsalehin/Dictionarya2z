@@ -13,11 +13,9 @@ const mongoose = require("mongoose");
 // Connection URL
 // const url = 'mongodb+srv://doadmin:Jh38729EfUPb10x6@db-mongodb-sfo3-28271-1039369e.mongo.ondigitalocean.com/admin?authMechanism=DEFAULT'; // Replace with your MongoDB server URL
 
-// const url =
-//   "mongodb+srv://doadmin:Jh38729EfUPb10x6@db-mongodb-sfo3-28271-1039369e.mongo.ondigitalocean.com/bdword_v5?tls=true&authSource=admin&replicaSet=db-mongodb-sfo3-28271";
+//const url ="mongodb+srv://doadmin:Jh38729EfUPb10x6@db-mongodb-sfo3-28271-1039369e.mongo.ondigitalocean.com/bdword_v5?tls=true&authSource=admin&replicaSet=db-mongodb-sfo3-28271";
 
-
-  const url = "mongodb://localhost:27017/urdu"
+const url = "mongodb://localhost:27017/urdu"
 
 mongoose.connect(url).then((data) => {
   console.log(`mongodb connected with server : ${data.connection.host}`);
@@ -48,6 +46,11 @@ const WotdSchema = new mongoose.Schema({
   sqlId: Number,
   word: String,
   date: String,
+});
+
+app.get('/ads.txt', (req, res) => {
+  const adsFilePath = __dirname + '/ads.txt';
+  res.sendFile(adsFilePath);
 });
 
 app.get("/test", async (req, res) => {
@@ -139,11 +142,13 @@ app.get("/:language/english-to-:language-wordList/", async (req, res) => {
   }
 });
 
-app.get("/:language/index", async (req, res) => {
+app.get("/:language/", async (req, res) => {
 
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  var currentdate = new Date(); 
-  var datetime = monthNames[currentdate.getMonth()] + " " + currentdate.getDate() + " " + currentdate.getFullYear();
+  var currentdate = new Date();
+  var day = currentdate.getDate();
+  var dayString = day < 10 ? '0' + day : day;  
+  var datetime = monthNames[currentdate.getMonth()] + " " + dayString + " " + currentdate.getFullYear();
   console.log(datetime);
   const regex = new RegExp(datetime, "i"); 
 
@@ -239,7 +244,7 @@ app.get("/:language/english-to-:language-meaning-:word", async (req, res) => {
     console.log(result);
 
     if (!result) {
-      res.redirect('/'+ languages +'/index');
+      res.redirect('/'+ languages +'/');
     }else{
 
         const {
